@@ -10,11 +10,15 @@ You must `DEFINE FIELD` in order to put data into the field.
 You must define the properties in order to store them.
 
 ```sql
-DEFINE FIELD object_field TYPE object;
+DEFINE FIELD object_field ON TABLE user TYPE object;
 
-DEFINE FIELD object_field.name TYPE string;
-DEFINE FIELD object_field.price TYPE decimal;
-DEFINE FIELD object_field.currency_code TYPE string;
+// fixed body
+DEFINE FIELD object_field.name ON TABLE user TYPE string;
+DEFINE FIELD object_field.price ON TABLE user TYPE decimal;
+DEFINE FIELD object_field.currency_code ON TABLE user TYPE string;
+
+// accepts any body
+DEFINE FIELD properties ON TABLE user FLEXIBLE TYPE object;
 ```
 
 ## Array Typing
