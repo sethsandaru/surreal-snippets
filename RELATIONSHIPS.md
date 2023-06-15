@@ -48,3 +48,18 @@ SELECT
     ->articles->article.* // array of article
 FROM user:seth;
 ```
+
+Notes:
+
+- You have to run `RELATE` immediately after creating the record to bind the edges.
+
+Trick: use a simple created EVENT like this
+
+```sql
+DEFINE EVENT create_edge_on_abcyxz ON article WHEN $event = 'CREATE' THEN (
+  RELATE ($value.user)->articles->($value.id) CONTENT {
+    user: $value.user,
+    connected_at: time::now()
+  }
+);
+```
