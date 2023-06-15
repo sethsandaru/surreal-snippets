@@ -113,3 +113,11 @@ SIGNIN (
         email_verified_at != NONE
 )
 ```
+
+### Notes
+
+Scoped user won't be able to run the `RELATE` statement normally. If you encounter this error, try to:
+
+- Ensure the authed user has enough privileges to both records.
+- Create the pivot table first (`DEFINE TABLE table`).
+- Can also introduce the `user` field into the pivot table, and add `PERMISSIONS FOR create WHERE FOR select, create, update WHERE $auth.id = user;`
