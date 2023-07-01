@@ -36,3 +36,11 @@ DEFINE EVENT write_email_log ON TABLE user WHEN $before.email != $after.email TH
 - `$event`: can be `CREATE`, `UPDATE`, `DELETE`
 - `$before`: the previous record
 - `$after`: the updated record
+
+## Tips
+
+You can use `DEFINE EVENT` to make edges (relationship) between records
+
+You can use multiple statements inside the EVENT.
+
+Ref: https://surrealdb.com/docs/surrealql/statements/define/event
